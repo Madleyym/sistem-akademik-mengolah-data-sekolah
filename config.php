@@ -35,12 +35,12 @@ function uploadimg($url)
 
     // generate nama file gambar
     if ($url == 'profile-sekolah.php') {
-        $namafilebaru = rand(0, 50) . '-bgLogin' . $fileExtension;
+        $namafilebaru = rand(0, 50) . '-bgLogin.' . $fileExtension;
     } else {
         $namafilebaru = rand(10, 1000) . '-' . $namafile;
     }
 
     // upload gambar
-    move_uploaded_file($tmp, "../assets/image/" . $namafilebaru);
+    move_uploaded_file($tmp, "../assets/img/" . $namafilebaru);
     return $namafilebaru;
 }
