@@ -101,7 +101,7 @@ $data = mysqli_fetch_array($sekolah);
 
 <body>
     <div class="konten">
-        <form action="proses-login.php" class="form" method="POST" id="login-form">
+        <form action="proses-login.php" class="form" method="GET" id="login-form">
             <h2>LOGIN</h2>
             <div class="username">
                 <i class="fa-solid fa-user"></i>
@@ -109,7 +109,7 @@ $data = mysqli_fetch_array($sekolah);
             </div>
             <div class="password">
                 <i class="fa-solid fa-key"></i>
-                <input type="password" name="password" id="inputPassword" placeholder="password" required />
+                <input type="password" name="password" id="inputPassword" placeholder="password">
             </div>
             <!-- Your HTML and CSS code -->
 
