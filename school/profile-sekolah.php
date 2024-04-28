@@ -14,7 +14,7 @@ if (isset($_GET['msg'])) {
 $alert = '';
 if ($msg == 'notimage') {
     $alert = '<div class="alert alert-warning alert-dismissible fade show" role="alert">
-    <i class="fa-solid fa-triangle-exclamation"></i> Galat! Data sekolah gagal di update.
+    <i class="fa-solid fa-triangle-exclamation"></i> Galat! Data sekolah gagal di update, Silahkan masukan Gambar.
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>';
 }
@@ -84,8 +84,18 @@ $data = mysqli_fetch_array($sekolah);
                                     <label for="status" class="col-sm-1 col-form-label">:</label>
                                     <div class="col-9" style="margin-left: -50px">
                                         <select name="status" id="status" class="form-select border-0 border-bottom" required>
-                                            <option value="Negeri">Negeri</option>
-                                            <option value="Swasta">Swasta</option>
+                                            <!-- <option value="Negeri">Negeri</option>
+                                            <option value="Swasta">Swasta</option> -->
+                                            <?php
+                                            $status = ['Negeri', 'Swasta'];
+                                            foreach ($status as $stt) {
+                                                if ($data['status'] == $stt) { ?>
+                                                    <option value="<?= $stt ?>" selected><?= $stt ?></option>
+                                                <?php } else { ?><option value="<?= $stt ?>" selected><?= $stt ?></option>
+                                            <?php }
+                                            }
+                                            ?>
+
                                         </select>
                                     </div>
                                 </div>
@@ -94,9 +104,19 @@ $data = mysqli_fetch_array($sekolah);
                                     <label for="akreditasi" class="col-sm-1 col-form-label">:</label>
                                     <div class="col-9" style="margin-left: -50px">
                                         <select name="akreditasi" id="akreditasi" class="form-select border-0 border-bottom" required>
-                                            <option value="A">A</option>
-                                            <option value="B">B</option>
-                                            <option value="C">C</option>
+                                            <?php
+                                            $akreditasi_options = ['A', 'B', 'C', 'D']; // Opsi akreditasi
+                                            foreach ($akreditasi_options as $akre) {
+                                                // Cek jika nilai akreditasi di database sama dengan nilai opsi saat ini
+                                                if ($data['akreditasi'] == $akre) {
+                                                    // Jika sama, tandai opsi sebagai "selected"
+                                                    echo "<option value='$akre' selected>$akre</option>";
+                                                } else {
+                                                    // Jika tidak, biarkan opsi seperti biasa
+                                                    echo "<option value='$akre'>$akre</option>";
+                                                }
+                                            }
+                                            ?>
                                         </select>
                                     </div>
                                 </div>
