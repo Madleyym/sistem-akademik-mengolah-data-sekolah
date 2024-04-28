@@ -58,7 +58,7 @@ if ($msg == 'added') {
                     <div class="card-header">
                         <span class="h5 my-2"><i class="fa-solid fa-square-plus"></i> Tambah User</span>
                         <button type="submit" name="simpan" class="btn btn-primary float-end"><i class="fa-solid fa-floppy-disk"></i> Simpan</button>
-                        <button type="reset" name="reset" class="btn btn-danger float-end me-1"><i class="fa-solid fa-xmark"></i>Reset</button> <!-- Perbaikan disini -->
+                        <button type="reset" name="reset" class="btn btn-danger float-end me-1"><i class="fa-solid fa-xmark"></i> Reset</button> <!-- Perbaikan disini -->
 
                     </div>
                     <div class="card-body">
