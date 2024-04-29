@@ -1,5 +1,11 @@
 <?php
 
+session_start();
+
+if (!isset($_SESSION['ssLogin'])) {
+    header("location:../auth/login.php");
+    exit;
+}
 require_once "../config.php";
 
 // jika tombol simpan ditekan
@@ -9,7 +15,7 @@ if (isset($_POST['simpan'])) {
     $username   = trim(htmlspecialchars($_POST['username']));
     $jabatan    = $_POST['jabatan'];
     $alamat     = trim(htmlspecialchars($_POST['alamat']));
-    $gambar     = trim(htmlspecialchars($_FILES['image']['name']));
+    $gambar     = ($_FILES['image']['name']);
     $password   = '1234';
     $pass       = password_hash($password, PASSWORD_DEFAULT);
 
@@ -26,7 +32,8 @@ if (isset($_POST['simpan'])) {
     } else {
         $gambar = 'salinan default.png';
     }
-    mysqli_query($koneksi, "INSERT INTO tbl_user VALUES(null,'$nama','$username','$jabatan','$alamat','$gambar','$pass')");
+
+    mysqli_query($koneksi, "INSERT INTO tbl_user (username, password, nama, alamat, jabatan, foto) VALUES ('$username', '$pass', '$nama', '$alamat', '$jabatan', '$gambar')");
 
     header("location:add-user.php?msg=added");
     return;
