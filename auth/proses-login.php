@@ -1,22 +1,26 @@
-
 <?php
 
-require_once "../index.php";
+session_start();
 
+require_once "../config.php";
 
 
 // jika tombol ditekan
 if (isset($_POST['login'])) {
-    $username = trim(htmlspecialchars($_POST['username']));
-    $password = trim(htmlspecialchars($_POST['password']));
+    $username = htmlspecialchars($_POST['username']);
+    $password = htmlspecialchars($_POST['password']);
 
-    // Cari pengguna berdasarkan nama pengguna menggunakan prepared statement
+    // Cari pengguna berdasarkan nama pengguna menggunakan prepared statement "Perbandingan dengan db"
     $result = mysqli_query($koneksi, "SELECT * FROM tbl_user WHERE username = '$username'");
 
     // Periksa apakah ada setidaknya satu baris yang ditemukan
     if (mysqli_num_rows($result) === 1) {
         $row = mysqli_fetch_assoc($result);
         if (password_verify($password, $row["password"])) {
+
+            // Kata sandi sesuai, mulai sesi baru
+            $_SESSION["ssLogin"] = true;
+            $_SESSION["ssUser"] = $username;
             header("location:../index.php");
             exit;
         } else {
@@ -34,4 +38,3 @@ if (isset($_POST['login'])) {
             </script>";
     }
 }
-?>
