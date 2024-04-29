@@ -1,4 +1,13 @@
 <?php
+
+session_start();
+
+if (!isset($_SESSION['ssLogin'])) {
+    header("location:../auth/login.php");
+    exit;
+}
+
+
 require_once "../config.php";
 
 // jika tombol disimpan
@@ -23,8 +32,8 @@ if (isset($_POST['simpan'])) {
         $url = 'profile-sekolah.php'; // URL tempat upload gambar
         // Fungsi uploadimg() harus didefinisikan
         $gbrSekolah = uploadimg($url); // Anda perlu menentukan fungsi uploadimg()
-        // @unlink('../assets/img/' . $gbr);
-        @unlink('../assets/img/' . $data['gambar']); //chatGPT
+        @unlink('../assets/img/' . $gbr);
+        // @unlink('../assets/img/' . $data['gambar']); //chatGPT
     }
     // update data
     mysqli_query($koneksi, "UPDATE tbl_sekolah SET 
