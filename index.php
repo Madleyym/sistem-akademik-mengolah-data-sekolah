@@ -1,5 +1,11 @@
 <?php
 
+session_start();
+if (!isset($_SESSION['ssLogin'])) {
+    header("Location: auth/login.php");
+    exit;
+}
+
 require_once "config.php";
 
 $title = "Dashboard - SDN 3 KUJANGSARI";
