@@ -1,5 +1,13 @@
 <?php
 
+// sesi login, user tidak aktif tendang
+session_start();
+
+if (!isset($_SESSION['ssLogin'])) {
+    header("location:../auth/login.php");
+    exit;
+}
+
 require_once "../config.php";
 
 $title = "Tambah User - SDN 3 KUJANGSARI";
@@ -33,7 +41,7 @@ if ($msg == 'oversize') {
 }
 if ($msg == 'added') {
     $alert = '<div class="alert alert-success alert-dismissible fade show" role="alert">
-    <i class="fa-solid fa-circle-check"></i> Tambah user berhasil.
+    <i class="fa-solid fa-circle-check"></i> Tambah user berhasil. Silahkan Ganti Password, Password Default 1234.
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>';
 }
