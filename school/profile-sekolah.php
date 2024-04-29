@@ -1,6 +1,15 @@
 <?php
 
+// sesi login, user tidak aktif tendang
+session_start();
+
+if (!isset($_SESSION['ssLogin'])) {
+    header("location:../auth/login.php");
+    exit;
+}
+
 require_once "../config.php";
+
 $title = "Profile Sekolah - SDN 3 KUJANGSARI";
 require_once "../template/header.php";
 require_once "../template/navbar.php";
