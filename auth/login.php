@@ -49,7 +49,7 @@
                          <div class="col-lg-5">
                              <div class="card shadow-lg border-0 rounded-lg mt-5">
                                  <div class="card-header">
-                                     <h4 class="text-center font-weight-light my-4">Login - SDN 3 KUJANGSARI</h4>
+                                     <h4 class="text-center font-weight-light my-4">Login - UPTD SDN 3 KUJANGSARI</h4>
                                  </div>
                                  <div class="card-body">
                                      <form action="proses-login.php" method="POST">
@@ -58,14 +58,14 @@
                                              <label for="username">username</label>
                                          </div>
                                          <div class="form-floating mb-3">
-                                             <input class="form-control" id="inputPassword" type="password" placeholder="Password" minlength="4" name="password" required />
-                                             <label for="inputPassword">Password</label>
+                                             <input class="form-control" id="inputPassword" type="password" placeholder="password" minlength="4" name="password" required />
+                                             <label for="inputPassword">password</label>
                                          </div>
                                          <button type="submit" name="login" class="btn btn-primary btn-primary col-12 rounded-pill my-2">Login</button>
                                      </form>
                                  </div>
                                  <div class="card-footer text-center py-3">
-                                     <div class="text-muted smal">Copy Right &copy; SDN 3 KUJANGSARI <?= date("Y") ?></div>
+                                     <div class="text-muted smal">Copy Right &copy; UPTD SDN 3 KUJANGSARI <?= date("Y") ?></div>
                                  </div>
                              </div>
                          </div>
