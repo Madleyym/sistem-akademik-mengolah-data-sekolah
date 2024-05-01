@@ -61,8 +61,8 @@ $data = mysqli_fetch_array($sekolah);
                 <div class="card">
                     <div class="card-header">
                         <span class="h5"><i class="fa-solid fa-pen-to-square"></i> Data Sekolah</span>
-                        <button type="submit" name="simpan" class="btn btn-primary float-end"><i class="fa-solid fa-floppy-disk"></i> Simpan</button>
-                        <button type="reset" name="reset" class="btn btn-danger float-end me-1"> <i class="fa-solid fa-xmark"></i> Reset</button>
+                        <button type="submit" name="simpan" class="btn btn-primary float-end"><i class="fa-solid fa-floppy-disk"></i> SIMPAN</button>
+                        <button type="reset" name="reset" class="btn btn-danger float-end me-1"> <i class="fa-solid fa-xmark"></i> RESET</button>
                     </div>
                     <div class="card-body">
                         <div class="row">

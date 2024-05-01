@@ -65,16 +65,16 @@ if ($msg == 'added') {
                 <div class="card">
                     <div class="card-header">
                         <span class="h5 my-2"><i class="fa-solid fa-square-plus"></i> Tambah User</span>
-                        <button type="submit" name="simpan" class="btn btn-primary float-end"><i class="fa-solid fa-floppy-disk"></i> SIMPAN</button>
-                        <button type="reset" name="reset" class="btn btn-danger float-end me-1"><i class="fa-solid fa-xmark"></i> RESET</button> <!-- Perbaikan disini -->
+                        <button type="submit" name="simpan" class="btn btn-sm btn-primary float-end"><i class="fa-solid fa-floppy-disk"></i> SIMPAN</button>
+                        <button type="reset" name="reset" class="btn btn-sm btn-danger float-end me-1"><i class="fa-solid fa-xmark"></i> RESET</button> <!-- Perbaikan disini -->
 
                     </div>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-8">
                                 <div class="mb-3 row">
-                                    <label for="username" class="col-sm-2 col-form-label">Nama</label>
-                                    <label for="username" class="col-sm-1 col-form-label">:</label>
+                                    <label for="nama" class="col-sm-2 col-form-label">Nama</label>
+                                    <label for="nama" class="col-sm-1 col-form-label">:</label>
                                     <div class="col-sm-9" style="margin-left: -60px;">
                                         <input type="text" class="form-control border-0 border-bottom" id="nama" name="nama" maxlength="20" required>
                                     </div>
@@ -87,8 +87,8 @@ if ($msg == 'added') {
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
-                                    <label for="username" class="col-sm-2 col-form-label">Jabatan</label>
-                                    <label for="username" class="col-sm-1 col-form-label">:</label>
+                                    <label for="jabatan" class="col-sm-2 col-form-label">Jabatan</label>
+                                    <label for="jabatan" class="col-sm-1 col-form-label">:</label>
                                     <div class="col-sm-9" style="margin-left: -60px;">
                                         <select name="jabatan" id="jabatan" class="form-select border-0 border-bottom" required>
                                             <option value="" selected>--Pilih Jabatan--</option>
@@ -99,8 +99,8 @@ if ($msg == 'added') {
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
-                                    <label for="username" class="col-sm-2 col-form-label">Alamat</label>
-                                    <label for="username" class="col-sm-1 col-form-label">:</label>
+                                    <label for="alamat" class="col-sm-2 col-form-label">Alamat</label>
+                                    <label for="alamat" class="col-sm-1 col-form-label">:</label>
                                     <div class="col-sm-9" style="margin-left: -60px;">
                                         <textarea name="alamat" id="alamat" cols="30" rows="3" class="form-control" placeholder="Domisili"></textarea>
                                     </div>
