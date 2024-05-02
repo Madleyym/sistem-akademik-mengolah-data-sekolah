@@ -11,15 +11,40 @@ if (!isset($_SESSION['ssLogin'])) {
 require_once "../config.php";
 
 $title = "Update Siswa - SDN 3 KUJANGSARI";
+
 require_once "../template/header.php";
 require_once "../template/navbar.php";
 require_once "../template/sidebar.php";
 
-$nis = $_GET['nis'];
 
+
+$nis = $_GET['nis'];
 $siswa = mysqli_query($koneksi, "SELECT * FROM tbl_siswa WHERE nis = '$nis'");
 $data = mysqli_fetch_array($siswa);
 
+
+// Periksa apakah ada pesan notifikasi yang diterima
+if (isset($_GET['msg'])) {
+    $msg = $_GET['msg'];
+} else {
+    $msg = "";
+}
+$alert = '';
+
+// Tambahkan notifikasi sesuai dengan pesan yang diterima
+if ($msg == 'updated') {
+    $alert = '<div class="alert alert-success alert-dismissible fade show" role="alert">
+    <i class="fa-solid fa-circle-check"></i> Data Siswa berhasil diupdate.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>';
+}
+
+if ($msg == 'cancel') {
+    $alert = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <i class="fa-solid fa-circle-xmark"></i> Gagal mengupdate data Siswa, NIS sudah ada.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>';
+}
 ?>
 
 <div id="layoutSidenav_content">
@@ -31,6 +56,10 @@ $data = mysqli_fetch_array($siswa);
                 <li class="breadcrumb-item "><a href="siswa.php">Siswa</a></li>
                 <li class="breadcrumb-item active">Update Siswa</li>
             </ol>
+            <!-- Menampilkan notifikasi di sini -->
+            <?php if ($alert !== '') {
+                echo $alert;
+            } ?>
             <!-- <form action="proses-siswa.php" method="$_POST" enctype="multipart/form-data"> -->
             <form action="proses-siswa.php" method="POST" enctype="multipart/form-data">
 
@@ -92,7 +121,7 @@ $data = mysqli_fetch_array($siswa);
                                 <img src="../assets/img/<?= $data['foto'] ?>" alt="Foto siswa" class="mb-3 rounded-circle" width="40%">
                                 <input type="file" name="image" class="form-control form-control-sm">
                                 <small class="text-secondary">Pilih> Foto, PNG, JEPG, JPG. Maximal 2MB</small>
-                                <!-- <div><small class="text-secondary"> width = height</small></div> -->
+                                <div><small class="text-secondary"> width = height</small></div>
                             </div>
                         </div>
                     </div>
