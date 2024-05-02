@@ -63,7 +63,7 @@ $maxnis = "NIS" . sprintf("%03s", $noUrut);
                                     <label for="kelas" class="col-sm-1 col-form-label">:</label>
                                     <div class="col-sm-9">
                                         <select name="kelas" id="kelas" class="form-select border-0 border-bottom ps-2" required>
-                                            <option selected>--Pilih Kelas--</option>
+                                            <option selected>-- Pilih Kelas --</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
                                             <option value="3">3</option>
