@@ -46,9 +46,11 @@ if ($msg == 'cancel') {
                 <li class="breadcrumb-item active">Siswa</li>
             </ol>
             <!-- Menampilkan notifikasi di sini -->
-            <?php if ($alert !== '') {
+            <?php
+            if ($msg !== '') {
                 echo $alert;
-            } ?>
+            }
+            ?>
             <div class="card">
                 <div class="card-header">
                     <span class="h5 my-2"><i class="fa-solid fa-list"></i> Data Siswa</span>
@@ -58,7 +60,9 @@ if ($msg == 'cancel') {
                     <table class="table table-hover text-center" id="datatablesSimple">
                         <thead>
                             <tr>
-                                <th scope="col">No</th>
+                                <th scope="col">
+                                    <center>No</center>
+                                </th>
                                 <th scope="col">
                                     <center>Foto</center>
                                 </th>
@@ -71,7 +75,6 @@ if ($msg == 'cancel') {
                                 <th scope="col">
                                     <center>Kelas</center>
                                 </th>
-
                                 <th scope="col">
                                     <center>Alamat</center>
                                 </th>
