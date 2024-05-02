@@ -100,7 +100,7 @@ if ($msg == 'added') {
                                     <label for="agama" class="col-sm-1 col-form-label">:</label>
                                     <div class="col-sm-9">
                                         <select name="agama" id="agama" class="form-select border-0 border-bottom" required>
-                                            <option value="">--Pilih Agama--</option>
+                                            <option value="">-- Pilih Agama --</option>
                                             <option value="Islam">Islam</option>
                                             <option value="Kristen">Kristen</option>
                                             <option value="Katolik">Katolik</option>
