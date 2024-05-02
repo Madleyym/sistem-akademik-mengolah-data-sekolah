@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 
 if (!isset($_SESSION['ssLogin'])) {
@@ -14,6 +13,28 @@ require_once "../template/header.php";
 require_once "../template/navbar.php";
 require_once "../template/sidebar.php";
 
+// Periksa apakah ada pesan notifikasi yang diterima
+if (isset($_GET['msg'])) {
+    $msg = $_GET['msg'];
+} else {
+    $msg = "";
+}
+$alert = '';
+
+// Tambahkan notifikasi sesuai dengan pesan yang diterima
+if ($msg == 'updated') {
+    $alert = '<div class="alert alert-success alert-dismissible fade show" role="alert">
+    <i class="fa-solid fa-circle-check"></i> Data Siswa berhasil diupdate.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>';
+}
+
+if ($msg == 'cancel') {
+    $alert = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <i class="fa-solid fa-circle-xmark"></i> Gagal mengupdate data Siswa, NIS sudah ada.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>';
+}
 ?>
 
 <div id="layoutSidenav_content">
@@ -24,6 +45,10 @@ require_once "../template/sidebar.php";
                 <li class="breadcrumb-item "><a href="../index.php">Home</a></li>
                 <li class="breadcrumb-item active">Siswa</li>
             </ol>
+            <!-- Menampilkan notifikasi di sini -->
+            <?php if ($alert !== '') {
+                echo $alert;
+            } ?>
             <div class="card">
                 <div class="card-header">
                     <span class="h5 my-2"><i class="fa-solid fa-list"></i> Data Siswa</span>
