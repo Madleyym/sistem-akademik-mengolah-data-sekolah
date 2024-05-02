@@ -61,10 +61,9 @@ if ($msg == 'added') {
                 } ?>
                 <div class="card">
                     <div class="card-header">
-
-                        <span class="h5 my-2"><i class="fa-solid fa-square-plus"></i> Tambah User</span>
+                        <span class="h5 my-2"><i class="fa-solid fa-square-plus"></i> Tambah Guru</span>
                         <button type="submit" name="simpan" class="btn btn-sm btn-primary float-end"><i class="fa-solid fa-floppy-disk"></i> SIMPAN</button>
-                        <button type="reset" name="reset" class="btn btn-sm btn-danger float-end me-1"><i class="fa-solid fa-xmark"></i> RESET</button> <!-- Perbaikan disini -->
+                        <button type="reset" name="reset" class="btn btn-sm btn-danger float-end me-1"><i class="fa-solid fa-xmark"></i> RESET</button>
                     </div>
                     <div class="card-body">
                         <div class="row">
@@ -73,16 +72,20 @@ if ($msg == 'added') {
                                     <label for="nip" class="col-sm-2 col-form-label">NIP</label>
                                     <label for="nip" class="col-sm-1 col-form-label">:</label>
                                     <div class="col-sm-9">
-                                        <input type="text" name="nip" pattern="[0-9]{18,}" title="NIP harus 18 angka" class="form-control ps-2 border-0 border-bottom" required>
+                                        <input type="text" name="nip" pattern="[0-9]{18}" title="NIP harus 18 angka" class="form-control ps-2 border-0 border-bottom" required>
+                                        <?php
+                                        // Check if NIP already exists
+                                        if ($msg == 'cancel') {
+                                            echo '<div class="invalid-feedback">NIP sudah ada dalam basis data.</div>';
+                                        }
+                                        ?>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <label for="nama" class="col-sm-2 col-form-label">Nama</label>
                                     <label for="nama" class="col-sm-1 col-form-label">:</label>
                                     <div class="col-sm-9">
-                                        <!-- <input type="text" name="nama" pattern="[0-9]{18,}" class="form-control ps-2 border-0 border-bottom"> -->
                                         <input type="text" name="nama" pattern="[a-zA-Z\s]+" class="form-control ps-2 border-0 border-bottom">
-
                                     </div>
                                 </div>
                                 <div class="row mb-3">
@@ -119,8 +122,6 @@ if ($msg == 'added') {
                                 <img src="../assets/img/salinan default.png" class="mb-3" style="width: 40%">
                                 <input type="file" name="image" class="form-control form-control-sm mt-4"> <small class="text-secondary">Pilih Foto PNG, JPEG atau JPG maximal 2MB</small>
                                 <small class="text-secondary">Widht = height</small>
-                                <div>
-                                </div>
                             </div>
                         </div>
                     </div>
