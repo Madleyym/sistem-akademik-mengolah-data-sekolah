@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 
 if (!isset($_SESSION['ssLogin'])) {
@@ -14,6 +13,7 @@ require_once "../template/header.php";
 require_once "../template/navbar.php";
 require_once "../template/sidebar.php";
 
+// Periksa apakah ada pesan notifikasi yang diterima
 if (isset($_GET['msg'])) {
     $msg = $_GET['msg'];
 } else {
@@ -21,9 +21,17 @@ if (isset($_GET['msg'])) {
 }
 $alert = '';
 
-if ($msg == 'deleted') {
+// Tambahkan notifikasi sesuai dengan pesan yang diterima
+if ($msg == 'updated') {
     $alert = '<div class="alert alert-success alert-dismissible fade show" role="alert">
-    <i class="fa-solid fa-circle-check"></i> Data Guru berhasil. dihapus.
+    <i class="fa-solid fa-circle-check"></i> Data Guru berhasil diupdate.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>';
+}
+
+if ($msg == 'cancel') {
+    $alert = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <i class="fa-solid fa-circle-xmark"></i> Gagal mengupdate data Guru, NIP sudah ada.
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>';
 }
@@ -38,6 +46,7 @@ if ($msg == 'deleted') {
                 <li class="breadcrumb-item "><a href="../index.php">Home</a></li>
                 <li class="breadcrumb-item active">Guru</li>
             </ol>
+            <!-- Menampilkan notifikasi di sini -->
             <?php if ($alert !== '') {
                 echo $alert;
             } ?>
@@ -85,7 +94,7 @@ if ($msg == 'deleted') {
                                 <tr>
                                     <td align="center"><?= $no++ ?></td>
                                     <td align="center">
-                                        <img src="../assets/img/<?= $data['foto'] ?>" class="rounded-circle" alt="foto siswa" width="60px">
+                                        <img src="../assets/img/<?= $data['foto'] ?>" class="rounded-circle" alt="foto guru" width="60px">
                                     </td>
                                     <td align="center"><?= $data['nip'] ?></td>
                                     <td align="center"><?= $data['nama'] ?></td>
@@ -93,9 +102,11 @@ if ($msg == 'deleted') {
                                     <td align="center"><?= $data['agama'] ?></td>
                                     <td align="center"><?= $data['alamat'] ?></td>
                                     <td align="center">
-                                        <a href="" class="btn btn-sm btn-warning" title="update guru"><i class="fa-solid fa-pen"></i></a>
-                                        <button type="button" class="btn btn-sm btn-danger" title="delete guru" id="btnHapus" title="hapus guru" data-id="<?= $data['id'] ?>" data-foto="<?= $data['foto'] ?>">
-                                            <i class="fa-solid fa-trash"></i></button>
+                                        <a href="edit-guru.php?id=<?= $data['id'] ?>" class="btn btn-sm btn-warning" title="update guru"><i class="fa-solid fa-pen"></i></a>
+                                        <button type="button" class="btn btn-sm btn-danger" title="delete guru" id="btnHapus" data-id="<?= $data['id'] ?>" data-foto="<?= $data['foto'] ?>">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </button>
+
                                     </td>
                                 </tr>
                             <?php } ?>
