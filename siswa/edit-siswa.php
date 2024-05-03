@@ -47,6 +47,8 @@ if ($msg == 'cancel') {
 }
 ?>
 
+
+
 <div id="layoutSidenav_content">
     <main>
         <div class="container-fluid px-4">
@@ -55,6 +57,7 @@ if ($msg == 'cancel') {
                 <li class="breadcrumb-item "><a href="../index.php">Home</a></li>
                 <li class="breadcrumb-item "><a href="siswa.php">Siswa</a></li>
                 <li class="breadcrumb-item active">Update Siswa</li>
+
             </ol>
             <!-- Menampilkan notifikasi di sini -->
             <?php if ($alert !== '') {
@@ -68,6 +71,7 @@ if ($msg == 'cancel') {
                         <span class="h5 my-2"><i class="fa-solid fa-pen-to-square"></i> Update Siswa</span>
                         <button type="submit" name="update" class="btn btn-primary float-end"><i class="fa-solid fa-floppy-disk"></i> UPDATE </class=></button>
                         <!-- <button type="reset" name="reset" class="btn btn-danger float-end me-1"><i class="fa-solid fa-floppy-disk"></i> RESET</class=></button> -->
+
                     </div>
                     <div class="card-body">
                         <div class="row">
