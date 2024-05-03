@@ -41,7 +41,7 @@ if ($msg == 'cancel') {
 <div id="layoutSidenav_content">
     <main>
         <div class="container-fluid px-4">
-            <h1 class="mt-4">Guru</h1>
+            <h1 class="mt-4">GURU</h1>
             <ol class="breadcrumb mb-4">
                 <li class="breadcrumb-item "><a href="../index.php">Home</a></li>
                 <li class="breadcrumb-item active">Guru</li>
@@ -102,7 +102,7 @@ if ($msg == 'cancel') {
                                     <td align="center"><?= $data['agama'] ?></td>
                                     <td align="center"><?= $data['alamat'] ?></td>
                                     <td align="center">
-                                        <a href="edit-guru.php?id=<?= $data['id'] ?>" class="btn btn-sm btn-warning" title="update guru"><i class="fa-solid fa-pen"></i></a>
+                                        <a href="edit-guru.php?id=<?= $data['id'] ?>" class="btn btn-sm btn-warning" title="update guru"><i class="fa-solid fa-pen-to-square"></i></a>
                                         <button type="button" class="btn btn-sm btn-danger" title="delete guru" id="btnHapus" data-id="<?= $data['id'] ?>" data-foto="<?= $data['foto'] ?>">
                                             <i class="fa-solid fa-trash"></i>
                                         </button>
