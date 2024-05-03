@@ -40,12 +40,25 @@ if ($msg == 'cancel') {
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>';
 }
+if ($msg == 'cancelupdate') {
+    $alert = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <i class="fa-solid fa-circle-xmark"></i> Update Pelajaran Gagal, Mata Pelajaran sudah ada.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>';
+}
+if ($msg == 'updated') {
+    $alert = '<div class="alert alert-success alert-dismissible" style="display: none;" id="added" role="alert">
+    <i class="fa-solid fa-circle-check"></i> Pelajaran berhasil di update.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>';
+}
+
 ?>
 
 <div id="layoutSidenav_content">
     <main>
         <div class="container-fluid px-4">
-            <h1 class="mt-4">Mata Pelajaran</h1>
+            <h1 class="mt-4">MATA PELAJARAN</h1>
             <ol class="breadcrumb mb-4">
                 <li class="breadcrumb-item "><a href="../index.php">Home</a></li>
                 <li class="breadcrumb-item active">Mata Pelajaran</li>
@@ -80,7 +93,7 @@ if ($msg == 'cancel') {
                                         ?>
                                     </select>
                                 </div>
-                                <button type="submit" class="btn btn-sm btn-primary mt-2" name="simpan"><i class="fa-solid fa-floppy-disk"></i> SIMPAN</button>
+                                <button type="submit" class="btn btn-sm btn-primary mt-2" name="simpan"><i class="fa-solid fa-floppy-disk"></i> TAMBAH</button>
                                 <button type="reset" class="btn btn-sm btn-danger mt-2" name="reset"><i class="fa-solid fa-xmark"></i> RESET</button>
                             </form>
                         </div>
@@ -113,27 +126,68 @@ if ($msg == 'cancel') {
                                     </tr>
                                 </thead>
                                 <tbody>
+
                                     <?php
-                                    $no = 1;
-                                    $queryPelajaran = mysqli_query($koneksi, "SELECT * FROM tbl_pelajaran");
-                                    while ($data = mysqli_fetch_array($queryPelajaran)) { ?>
+                                    $no = 1; // Inisialisasi variabel $no di luar loop
+                                    $keyboard = ''; // Inisialisasi variabel $keyboard dengan string kosong
 
+                                    if (isset($_GET['cari'])) {
+                                        $keyboard = $_GET['cari']; // Ambil nilai dari parameter 'cari' jika ada
+                                    }
 
-                                        <tr>
-                                            <th scope="row"><?= $no++ ?></th>
-                                            <td><?= $data['pelajaran'] ?></td>
-                                            <td><?= $data['guru'] ?></td>
-                                            <td align="center"> <!-- Perbaikan disini -->
-                                                <a href="#" class="btn btn-sm btn-warning" title="Edit Pelajaran"><i class="fa-solid fa-pen-to-square"></i></a>
-                                                <!-- <button type="button" id="btnHapus" class="btn btn-sm btn-danger" title="Hapus Pelajaran"><i class="fa-solid fa-trash"></i></button> -->
-                                            <td align="center">
-                                                <!-- <a href="#" class="btn btn-sm btn-warning" title="Edit Pelajaran"><i class="fa-solid fa-pen-to-square"></i></a> -->
-                                                <button type="button" data-id="<?= $data['id'] ?>" id="btnHapus" class="btn btn-sm btn-danger" title="Hapus Pelajaran"><i class="fa-solid fa-trash"></i></button>
-                                            </td>
-                                        </tr>
-                                    <?php } ?>
+                                    // Pengaturan pagination
+                                    $page = isset($_GET['page']) ? $_GET['page'] : 1;
+                                    $limit = 10; // Jumlah data per halaman
+                                    $offset = ($page - 1) * $limit;
+
+                                    $queryPelajaran = mysqli_query($koneksi, "SELECT * FROM tbl_pelajaran WHERE pelajaran LIKE '%$keyboard%' OR guru LIKE '%$keyboard%' LIMIT $limit OFFSET $offset");
+                                    if (mysqli_num_rows($queryPelajaran) > 0) {
+                                        while ($data = mysqli_fetch_array($queryPelajaran)) {
+                                            // Kode untuk menampilkan data
+                                    ?>
+                                            <tr>
+                                                <th scope="row"><?= $no++ ?></th>
+                                                <td><?= $data['pelajaran'] ?></td>
+                                                <td><?= $data['guru'] ?></td>
+                                                <td align="center">
+                                                    <a href="edit-pelajaran.php?id=<?= $data['id'] ?>" class="btn btn-sm btn-warning" title="Edit Pelajaran"><i class="fa-solid fa-pen-to-square"></i></a>
+                                                </td>
+                                                <td align="center">
+                                                    <button type="button" data-id="<?= $data['id'] ?>" id="btnHapus" class="btn btn-sm btn-danger" title="Hapus Pelajaran"><i class="fa-solid fa-trash"></i></button>
+                                                </td>
+                                            </tr>
+                                    <?php
+                                        } // Tutup blok while
+                                    } else {
+                                        echo '<tr><td colspan="5">Data tidak ditemukan</td></tr>';
+                                    }
+                                    ?>
+
                                 </tbody>
                             </table>
+                            <!-- Tampilkan tombol pagination -->
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination justify-content-center">
+                                    <li class="page-item <?php if ($page <= 1) echo 'disabled'; ?>">
+                                        <a class="page-link" href="?page=<?php echo ($page > 1) ? ($page - 1) : 1; ?>" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                    <?php
+                                    $total_pages = ceil(mysqli_num_rows(mysqli_query($koneksi, "SELECT * FROM tbl_pelajaran WHERE pelajaran LIKE '%$keyboard%' OR guru LIKE '%$keyboard%'")) / $limit);
+                                    for ($i = 1; $i <= $total_pages; $i++) {
+                                    ?>
+                                        <li class="page-item <?php if ($page == $i) echo 'active'; ?>"><a class="page-link" href="?page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
+                                    <?php
+                                    }
+                                    ?>
+                                    <li class="page-item <?php if ($page >= $total_pages) echo 'disabled'; ?>">
+                                        <a class="page-link" href="?page=<?php echo ($page < $total_pages) ? ($page + 1) : $total_pages; ?>" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
                         </div>
                     </div>
                 </div>
