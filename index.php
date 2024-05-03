@@ -17,7 +17,7 @@ require_once "template/sidebar.php";
 <div id="layoutSidenav_content">
     <main>
         <div class="container-fluid px-4">
-            <h1 class="mt-4">Dashboard</h1>
+            <h1 class="mt-4">DASHBOARD</h1>
             <ol class="breadcrumb mb-4">
                 <li class="breadcrumb-item active">Home</li>
             </ol>
