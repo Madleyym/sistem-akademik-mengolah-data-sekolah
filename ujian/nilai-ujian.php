@@ -72,7 +72,7 @@ $maxno = "UTS-" . sprintf("%03s", $noUrut);
                                         <div class="input-group mb-2">
                                             <label for="noUjian" class="form-label small mb-1">KALENDER</label>
                                             <div class="input-group">
-                                                <span class="input-group-text"><i class="fas fa-calender-days"></i></span>
+                                                <span class="input-group-text"><i class="fas fa-calendar-days"></i></i></span>
                                                 <input type="date" name="tgl" class="form-control" required>
                                             </div>
                                         </div>
@@ -92,29 +92,22 @@ $maxno = "UTS-" . sprintf("%03s", $noUrut);
                                                 </select>
                                             </div>
                                         </div>
+                                        <!-- di peruntukan KELAS -->
                                         <div class="input-group mb-2">
-                                            <label for="nis" class="form-label small mb-1">JURUSAN</label>
+                                            <label for="kelas" class="form-label small mb-1">KELAS</label>
                                             <div class="input-group">
-                                                <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
-                                                <select name="nis" id="nis" class="form-select" required>
-                                                    <option value="">-- Pilih Siswa --</option>
-                                                    <?php
-                                                    $querySiswa = mysqli_query($koneksi, "SELECT * FROM tbl_siswa");
-                                                    while ($data = mysqli_fetch_array($querySiswa)) { ?>
-                                                        <option value="<?= $data['nis'] ?>"><?= $data['nis'] . ' - ' . $data['nama'] ?></option>
-                                                    <?php
-                                                    }
-                                                    ?>
+                                                <span class="input-group-text"><i class="fa-solid fa-location-arrow"></i></span>
+                                                <select name="kelas" id="kelas" class="form-select" required>
+                                                    <option value="">-- KELAS-- </option>
+                                                    <option value="1">kelas 1</option>
+                                                    <option value="2">kelas 2</option>
+                                                    <option value="3">kelas 3</option>
+                                                    <option value="4">kelas 4</option>
+                                                    <option value="5">kelas 5</option>
+                                                    <option value="6">kelas 6</option>
                                                 </select>
                                             </div>
                                         </div>
-                                        <!-- <div class="input-group mb-2">
-                                            <label for="noUjian" class="form-label small mb-1">Kelas</label>
-                                            <div class="input-group">
-                                                <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
-                                                <input type="kelas" name="kelas" class="form-control" required>
-                                            </div>
-                                        </div> -->
                                         <div class="input-group mb-2">
                                             <label for="sum" class="form-label small mb-1">SUM</label>
                                             <div class="input-group">
@@ -173,8 +166,9 @@ $maxno = "UTS-" . sprintf("%03s", $noUrut);
                                                     </th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
-                                                <!-- Data Tabel Disini -->
+                                            <!-- ini nanti ganti kelas -->
+                                            <tbody id="kejuran">
+
                                             </tbody>
                                         </table>
                                         <!-- Input Nilai Ujian -->
@@ -189,48 +183,52 @@ $maxno = "UTS-" . sprintf("%03s", $noUrut);
     </main>
 
     <script>
-        const nis = document.getElementById('nis');
-        const mapelKelas = document.getElementById('kelas');
+        const kelas = document.getElementById('kelas');
+        const mapelKejuran = document.getElementById('kejuran');
 
-        nis.addEventListener('change', function() {
+        kelas.addEventListener('change', function() {
             let ajax = new XMLHttpRequest();
 
             ajax.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    // Tambahkan respons dari AJAX ke dalam tbody tabel
-                    document.querySelector('#datatablesSimple tbody').innerHTML = ajax.responseText;
+                if (ajax.readyState == 4 && this.status == 200) {
+                    mapelKejuran.innerHTML = ajax.responseText;
+                    // document.querySelector('#datatablesSimple tbody').innerHTML = ajax.responseText;
                 }
             }
 
-            ajax.open('GET', 'ajax-mapel.php?nis=' + nis.value, true);
+            ajax.open('GET', 'ajax-mapel.php?kelas=' + kelas.value, true);
             ajax.send();
-        });
+
+        })
+
+        const total = document.getElementById('total_nilai');
+        const minValue = document.getElementById('nilai_terendah');
+        const maxValue = document.getElementById('nilai_tertinggi');
+        const average = document.getElementById('nilai_rata2');
 
         function fnhitung() {
-            const nilaiUjian = document.getElementsByClassName('nilai');
+            let nilaiUjian = document.getElementsByClassName('nilai');
+
             let totalNilai = 0;
             let listNilai = [];
-
             for (let i = 0; i < nilaiUjian.length; i++) {
-                totalNilai += parseInt(nilaiUjian[i].value);
-                listNilai.push(parseInt(nilaiUjian[i].value));
+                totalNilai = parseInt(totalNilai) + parseInt(nilaiUjian[i].value);
+                total.value = totalNilai;
+
+                listNilai.push(nilaiUjian[i].value)
+
+                listNilai.sort(function(a, b) {
+                    return a - b
+                });
+
+                minValue.value = listNilai[0];
+                maxValue.value = listNilai[listNilai.length - 1];
+                average.value = Math.round(totalNilai / listNilai.length);
+
+
             }
-
-            listNilai.sort(function(a, b) {
-                return a - b;
-            });
-
-            const minValue = listNilai[0];
-            const maxValue = listNilai[listNilai.length - 1];
-            const average = Math.round(totalNilai / listNilai.length);
-
-            document.getElementById('total_nilai').value = totalNilai;
-            document.getElementById('nilai_terendah').value = minValue;
-            document.getElementById('nilai_tertinggi').value = maxValue;
-            document.getElementById('nilai_rata2').value = average;
         }
     </script>
-
 
     <?php require_once "../template/footer.php"; ?>
 </div>
