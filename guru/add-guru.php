@@ -39,7 +39,7 @@ if ($msg == 'oversize') {
 }
 if ($msg == 'added') {
     $alert = '<div class="alert alert-success alert-dismissible fade show" role="alert">
-    <i class="fa-solid fa-circle-check"></i> Tambah Guru berhasil. Silahkan Ganti Password, Password Default 1234.
+    <i class="fa-solid fa-circle-check"></i> Tambah Guru berhasil.
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>';
 }
