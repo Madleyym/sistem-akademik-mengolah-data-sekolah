@@ -37,20 +37,23 @@ require_once "../template/sidebar.php";
                                     <center>NO UJIAN</center>
                                 </th>
                                 <th scope="col">
-                                    <center>NAMA SISWA</center>
-                                </th>
-                                <th scope="col">
-                                    <center>Mata Pelajaran</center>
+                                    <center>NIS</center>
                                 </th>
                                 <th scope="col">
                                     <center>KELAS</center>
                                 </th>
                                 <th scope="col">
-                                    <center>Nilai UTS</center>
+                                    <center>NILAI TERENDAH</center>
+                                </th>
+                                <th scope="col">
+                                    <center>NILAI TERTINGGI</center>
+                                </th>
+                                <th scope="col">
+                                    <center>NILAI RATA RATA</center>
                                 </th>
                                 </th>
                                 <th scope="col">
-                                    <center>Nilai UAS</center>
+                                    <center>HASIL UJIAN</center>
                                 </th>
                             </tr>
                     </table>
