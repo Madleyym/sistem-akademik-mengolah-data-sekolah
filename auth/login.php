@@ -39,6 +39,7 @@ $data = mysqli_fetch_array($sekolah);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - SDN 3 KUJANGSARI</title>
+    <link rel="icon" type="image/x-icon" href="<?= $main_url ?>assets/img/toga.png">
 
     <style>
         body {
