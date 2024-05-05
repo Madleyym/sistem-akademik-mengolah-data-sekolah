@@ -36,9 +36,22 @@
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-user-graduate"></i></div>
                         UTS / UAS
                     </a>
-
                     <hr class="mb-0">
-
+                    <div class="sb-sidenav-menu-heading">JADWAL & ABSENSI</div>
+                    </a>
+                    <a class="nav-link" href="<?= $main_url ?>#">
+                        <div class="sb-nav-link-icon"><i class="fa-solid fa-user-graduate"></i></div>
+                        ABSENSI SISWA
+                    </a>
+                    <a class="nav-link" href="<?= $main_url ?>#">
+                        <div class="sb-nav-link-icon"><i class="fa-solid fa-user-graduate"></i></div>
+                        JADWAL PELAJARAN
+                    </a>
+                    <a class="nav-link" href="<?= $main_url ?>#">
+                        <div class="sb-nav-link-icon"><i class="fa-solid fa-user-graduate"></i></div>
+                        JADWAL UTS / UAS
+                    </a>
+                    <hr class="mb-0">
                 </div>
             </div>
             <div class="sb-sidenav-footer" style="background-color: navbar-dark bg-dark;">
