@@ -29,7 +29,7 @@ $data = mysqli_fetch_array($querypelajaran);
                 <div class="col-4">
                     <div class="card">
                         <div class="card-header">
-                            <i class="fa-solid fa-pen-to-square"></i> Edit Pelajaran
+                            <span class="h5 my-2"><i class="fa-solid fa-pen-to-square"></i> Edit Pelajaran</span>
                         </div>
                         <div class="card-body">
                             <form action="proses-pelajaran.php" method="POST">
@@ -62,7 +62,15 @@ $data = mysqli_fetch_array($querypelajaran);
                 <div class="col-8">
                     <div class="card">
                         <div class="card-header">
-                            <i class="fa-solid fa-list"></i> Data Pelajaran
+                            <style>
+                                .card-header {
+                                    background-color: #568CDD;
+                                    color: #fff;
+                                    padding: 10px;
+                                    border-bottom: 2px solid #568CDD;
+                                }
+                            </style>
+                            <span class="h5 my-2"><i class="fa-solid fa-list"></i> Data Siswa</span>
                         </div>
                         <div class="card-body">
                             <table class="table table-hover text-center" id="datatablesSimple">

@@ -57,7 +57,15 @@ if ($msg == 'err2') {
                 ?>
                 <div class="card">
                     <div class="card-header">
-                        <span class="h5 my-2"><i class="fa-solid fa-pen-to-square"></i> Ganti Password</span><span class="float-end"></span>
+                        <style>
+                            .card-header {
+                                background-color: #568CDD;
+                                color: #fff;
+                                padding: 10px;
+                                border-bottom: 2px solid #568CDD;
+                            }
+                        </style>
+                        <span class="h5 my-2"><i class="fa-solid fa-key"></i></i> GANTI PASSWORD</span><span class="float-end"></span>
                         <button type="submit" name="simpan" class="btn btn-sm btn-primary float-end"><i class="fa-solid fa-floppy-disk"></i> SIMPAN</button>
                         <button type="reset" name="reset" class="btn btn-sm btn-danger float-end me-1"><i class="fa-solid fa-xmark"></i> RESET</button>
                     </div>

@@ -34,11 +34,11 @@
                     </a>
                     <a class="nav-link" href="<?= $main_url ?>ujian/ujian.php">
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-user-graduate"></i></div>
-                        UTS / UAS
+                        UJIAN SEKOLAH
                     </a>
-                    <hr class="mb-0">
-                    <div class="sb-sidenav-menu-heading">JADWAL & ABSENSI</div>
-                    </a>
+                    <!-- <hr class="mb-0">
+                    <div class="sb-sidenav-menu-heading">JADWAL & ABSENSI</div> -->
+                    <!-- </a>
                     <a class="nav-link" href="<?= $main_url ?>#">
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-user-graduate"></i></div>
                         ABSENSI SISWA
@@ -50,7 +50,7 @@
                     <a class="nav-link" href="<?= $main_url ?>#">
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-user-graduate"></i></div>
                         JADWAL UTS / UAS
-                    </a>
+                    </a> -->
                     <hr class="mb-0">
                 </div>
             </div>

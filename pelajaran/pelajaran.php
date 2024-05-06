@@ -72,7 +72,7 @@ if ($msg == 'updated') {
                 <div class="col-4">
                     <div class="card">
                         <div class="card-header">
-                            <i class="fa-solid fa-plus"></i> Tambah Pelajaran
+                            <span class="h5 my-2"><i class="fa-solid fa-book"></i></i> TAMBAH PELAJARAN</span>
                         </div>
                         <div class="card-body">
                             <form action="proses-pelajaran.php" method="POST">
@@ -102,7 +102,15 @@ if ($msg == 'updated') {
                 <div class="col-8">
                     <div class="card">
                         <div class="card-header">
-                            <i class="fa-solid fa-list"></i> Data Pelajaran
+                            <style>
+                                .card-header {
+                                    background-color: #568CDD;
+                                    color: #fff;
+                                    padding: 10px;
+                                    border-bottom: 2px solid #568CDD;
+                                }
+                            </style>
+                            <i class="fa-solid fa-list"></i> DATA PELAJARAN
                         </div>
                         <div class="card-body">
                             <table class="table table-hover text-center" id="datatablesSimple">

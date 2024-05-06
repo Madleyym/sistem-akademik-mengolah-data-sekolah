@@ -61,7 +61,15 @@ if ($msg == 'added') {
                 } ?>
                 <div class="card">
                     <div class="card-header">
-                        <span class="h5 my-2"><i class="fa-solid fa-square-plus"></i> Tambah Guru</span>
+                        <style>
+                            .card-header {
+                                background-color: #568CDD;
+                                color: #fff;
+                                padding: 10px;
+                                border-bottom: 2px solid #568CDD;
+                            }
+                        </style>
+                        <span class="h5 my-2"><i class="fa-solid fa-square-plus"></i> TAMBAH GURU</span>
                         <button type="submit" name="simpan" class="btn btn-sm btn-primary float-end"><i class="fa-solid fa-floppy-disk"></i> SIMPAN</button>
                         <button type="reset" name="reset" class="btn btn-sm btn-danger float-end me-1"><i class="fa-solid fa-xmark"></i> RESET</button>
                     </div>
@@ -82,21 +90,21 @@ if ($msg == 'added') {
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label for="nama" class="col-sm-2 col-form-label">Nama</label>
+                                    <label for="nama" class="col-sm-2 col-form-label">NAMA</label>
                                     <label for="nama" class="col-sm-1 col-form-label">:</label>
                                     <div class="col-sm-9">
                                         <input type="text" name="nama" pattern="[a-zA-Z\s]+" class="form-control ps-2 border-0 border-bottom">
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label for="telepon" class="col-sm-2 col-form-label">Telepon</label>
+                                    <label for="telepon" class="col-sm-2 col-form-label">TELEPON</label>
                                     <label for="telepon" class="col-sm-1 col-form-label">:</label>
                                     <div class="col-sm-9">
                                         <input type="tel" name="telepon" pattern="[0-9]{5,}" title="Minimal 5 angka" class="form-control ps-2 border-0 border-bottom" required>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label for="agama" class="col-sm-2 col-form-label">Agama</label>
+                                    <label for="agama" class="col-sm-2 col-form-label">AGAMA</label>
                                     <label for="agama" class="col-sm-1 col-form-label">:</label>
                                     <div class="col-sm-9">
                                         <select name="agama" id="agama" class="form-select border-0 border-bottom" required>
@@ -114,7 +122,7 @@ if ($msg == 'added') {
                                     <label for="alamat" class="col-sm-2 col-form-label">ALAMAT</label>
                                     <label for="alamat" class="col-sm-1 col-form-label">:</label>
                                     <div class="col-sm-9">
-                                        <textarea name="alamat" id="alamat" cols="30" rows="3" placeholder="alamat siswa" class="form-control" required></textarea>
+                                        <textarea name="alamat" id="alamat" cols="30" rows="3" placeholder="alamat guru" class="form-control" required></textarea>
                                     </div>
                                 </div>
                             </div>

@@ -12,6 +12,33 @@ require_once "../template/header.php";
 require_once "../template/navbar.php";
 require_once "../template/sidebar.php";
 
+if (isset($_GET['msg']) && isset($_GET['nis'])) {
+    $msg = $_GET['msg'];
+    $nis = $_GET['nis'];
+} else {
+    $msg = "";
+    $nis = "";
+}
+$alert = '';
+
+// Tambahkan notifikasi sesuai dengan pesan yang diterima
+if ($msg == 'LULUS') {
+    $alert = '<div class="alert alert-success alert-dismissible fade show" role="alert">
+    <i class="fa-solid fa-circle-check"></i> Selamat.. Siswa dengan NIS : ' . $nis . 'berhasil LULUS UJIAN
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>';
+}
+
+
+// Tambahkan notifikasi sesuai dengan pesan yang diterima
+if ($msg == 'GAGAL') {
+    $alert = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <i class="fa-solid fa-circle-xmark"></i> Siswa dengan NIS : ' . $nis . 'GAGAL LULUS UJIAN
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>';
+}
+
+
 $queryNoUjian = mysqli_query($koneksi, "SELECT max(no_ujian) as maxno FROM tbl_ujian");
 $data = mysqli_fetch_array($queryNoUjian);
 $maxno = $data['maxno'];
@@ -20,6 +47,18 @@ $noUrut = (int) substr($maxno, 4, 3);
 $noUrut++;
 $maxno = "UTS-" . sprintf("%03s", $noUrut);
 ?>
+<script>
+    // JavaScript untuk menampilkan pesan alert jika NIS sudah digunakan
+    var msg = "<?php echo $msg; ?>";
+    if (msg !== "") {
+        showAlert(msg); // Panggil fungsi showAlert dengan pesan yang diterima
+    }
+
+    // Fungsi untuk menampilkan pesan alert
+    function showAlert(message) {
+        alert(message);
+    }
+</script>
 
 <div id="layoutSidenav_content">
     <main>
@@ -33,6 +72,11 @@ $maxno = "UTS-" . sprintf("%03s", $noUrut);
                         <li class="breadcrumb-item active">Nilai Ujian</li>
                     </ol>
                 </div>
+                <?php
+                if ($msg !== '') {
+                    echo $alert;
+                }
+                ?>
                 <!-- <div class="card-col-4">
                     <div class="card mt-1 border-0">
                         <h5>SYARAT KELULUSAN</h5>
@@ -43,6 +87,7 @@ $maxno = "UTS-" . sprintf("%03s", $noUrut);
                     </div>
                 </div> -->
             </div>
+
             <div class="card">
                 <div class="card-header">
                     <style>
@@ -55,6 +100,11 @@ $maxno = "UTS-" . sprintf("%03s", $noUrut);
                     </style>
                     <i class="fa-solid fa-users"></i> DATA PESERTA UJIAN
                 </div>
+                <script>
+                    function showAlert(message) {
+                        alert(message);
+                    }
+                </script>
                 <div class="card-body">
                     <form action="proses-nilai-ujian.php" method="POST">
                         <div class="row">
@@ -98,13 +148,13 @@ $maxno = "UTS-" . sprintf("%03s", $noUrut);
                                             <div class="input-group">
                                                 <span class="input-group-text"><i class="fa-solid fa-location-arrow"></i></span>
                                                 <select name="kelas" id="kelas" class="form-select" required>
-                                                    <option value="">-- KELAS-- </option>
-                                                    <option value="1">kelas 1</option>
-                                                    <option value="2">kelas 2</option>
-                                                    <option value="3">kelas 3</option>
-                                                    <option value="4">kelas 4</option>
-                                                    <option value="5">kelas 5</option>
-                                                    <option value="6">kelas 6</option>
+                                                    <option value="">-- KELAS 6 -- </option>
+                                                    <option value="A">kelas A</option>
+                                                    <option value="B">kelas B</option>
+                                                    <option value="C">kelas C</option>
+                                                    <!-- <option value="D">kelas D</option>
+                                                    <option value="E">kelas E</option>
+                                                    <option value="F">kelas F</option> -->
                                                 </select>
                                             </div>
                                         </div>

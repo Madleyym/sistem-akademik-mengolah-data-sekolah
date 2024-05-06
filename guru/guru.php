@@ -52,7 +52,15 @@ if ($msg == 'cancel') {
             } ?>
             <div class="card">
                 <div class="card-header">
-                    <i class="fa-solid fa-list"></i> Data Guru
+                    <style>
+                        .card-header {
+                            background-color: #568CDD;
+                            color: #fff;
+                            padding: 10px;
+                            border-bottom: 2px solid #568CDD;
+                        }
+                    </style>
+                    <span class="h5 my-2"><i class="fa-solid fa-list"></i> DATA GURU</span>
                     <a href="<?= $main_url ?>guru/add-guru.php" class="btn btn-sm btn-primary float-end"><i class="fa-solid fa-user-plus"></i> TAMBAH GURU</a>
                 </div>
                 <div class="card-body">

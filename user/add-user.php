@@ -64,7 +64,15 @@ if ($msg == 'added') {
                 ?>
                 <div class="card">
                     <div class="card-header">
-                        <span class="h5 my-2"><i class="fa-solid fa-square-plus"></i> Tambah User</span>
+                        <style>
+                            .card-header {
+                                background-color: #568CDD;
+                                color: #fff;
+                                padding: 10px;
+                                border-bottom: 2px solid #568CDD;
+                            }
+                        </style>
+                        <span class="h5 my-2"><i class="fa-solid fa-square-plus"></i> TAMBAH USER</span>
                         <button type="submit" name="simpan" class="btn btn-sm btn-primary float-end"><i class="fa-solid fa-floppy-disk"></i> SIMPAN</button>
                         <button type="reset" name="reset" class="btn btn-sm btn-danger float-end me-1"><i class="fa-solid fa-xmark"></i> RESET</button> <!-- Perbaikan disini -->
 
