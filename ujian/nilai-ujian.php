@@ -12,32 +12,23 @@ require_once "../template/header.php";
 require_once "../template/navbar.php";
 require_once "../template/sidebar.php";
 
-if (isset($_GET['msg']) && isset($_GET['nis'])) {
-    $msg = $_GET['msg'];
-    $nis = $_GET['nis'];
-} else {
-    $msg = "";
-    $nis = "";
-}
+$msg = isset($_GET['msg']) ? $_GET['msg'] : "";
+$nis = isset($_GET['nis']) ? $_GET['nis'] : "";
 $alert = '';
 
-// Tambahkan notifikasi sesuai dengan pesan yang diterima
 if ($msg == 'LULUS') {
     $alert = '<div class="alert alert-success alert-dismissible fade show" role="alert">
-    <i class="fa-solid fa-circle-check"></i> Selamat.. Siswa dengan NIS : ' . $nis . 'berhasil LULUS UJIAN
+    <i class="fa-solid fa-circle-check"></i> Selamat.. Siswa dengan NIS : ' . $nis . ' berhasil LULUS UJIAN
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>';
 }
 
-
-// Tambahkan notifikasi sesuai dengan pesan yang diterima
 if ($msg == 'GAGAL') {
     $alert = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-    <i class="fa-solid fa-circle-xmark"></i> Siswa dengan NIS : ' . $nis . 'GAGAL LULUS UJIAN
+    <i class="fa-solid fa-circle-xmark"></i> Siswa dengan NIS : ' . $nis . ' GAGAL LULUS UJIAN
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>';
 }
-
 
 $queryNoUjian = mysqli_query($koneksi, "SELECT max(no_ujian) as maxno FROM tbl_ujian");
 $data = mysqli_fetch_array($queryNoUjian);
@@ -47,18 +38,6 @@ $noUrut = (int) substr($maxno, 4, 3);
 $noUrut++;
 $maxno = "UTS-" . sprintf("%03s", $noUrut);
 ?>
-<script>
-    // JavaScript untuk menampilkan pesan alert jika NIS sudah digunakan
-    var msg = "<?php echo $msg; ?>";
-    if (msg !== "") {
-        showAlert(msg); // Panggil fungsi showAlert dengan pesan yang diterima
-    }
-
-    // Fungsi untuk menampilkan pesan alert
-    function showAlert(message) {
-        alert(message);
-    }
-</script>
 
 <div id="layoutSidenav_content">
     <main>
@@ -77,15 +56,6 @@ $maxno = "UTS-" . sprintf("%03s", $noUrut);
                     echo $alert;
                 }
                 ?>
-                <!-- <div class="card-col-4">
-                    <div class="card mt-1 border-0">
-                        <h5>SYARAT KELULUSAN</h5>
-                        <ul class="ps-3">
-                            <li><small>Nilai minimal setiap Mata Pelajaran tidak boleh di bawah 50</small></li>
-                            <li><small>Nilai rata-rata setiap Mata Pelajaran tidak boleh di bawah 60</small></li>
-                        </ul>
-                    </div>
-                </div> -->
             </div>
 
             <div class="card">
@@ -100,17 +70,12 @@ $maxno = "UTS-" . sprintf("%03s", $noUrut);
                     </style>
                     <i class="fa-solid fa-users"></i> DATA PESERTA UJIAN
                 </div>
-                <script>
-                    function showAlert(message) {
-                        alert(message);
-                    }
-                </script>
                 <div class="card-body">
                     <form action="proses-nilai-ujian.php" method="POST">
                         <div class="row">
                             <div class="col-md-3">
                                 <div class="card">
-                                    <div class="card-header"> <i class="fa-solid fa-list"></i> DATA NILAI</div>
+                                    <div class="card-header"><i class="fa-solid fa-list"></i> DATA NILAI</div>
                                     <div class="card-body">
                                         <div class="input-group mb-2">
                                             <label for="noUjian" class="form-label small mb-1">NOMOR UJIAN</label>
@@ -120,9 +85,9 @@ $maxno = "UTS-" . sprintf("%03s", $noUrut);
                                             </div>
                                         </div>
                                         <div class="input-group mb-2">
-                                            <label for="noUjian" class="form-label small mb-1">KALENDER</label>
+                                            <label for="tgl" class="form-label small mb-1">KALENDER</label>
                                             <div class="input-group">
-                                                <span class="input-group-text"><i class="fas fa-calendar-days"></i></i></span>
+                                                <span class="input-group-text"><i class="fas fa-calendar-days"></i></span>
                                                 <input type="date" name="tgl" class="form-control" required>
                                             </div>
                                         </div>
@@ -135,26 +100,22 @@ $maxno = "UTS-" . sprintf("%03s", $noUrut);
                                                     <?php
                                                     $querySiswa = mysqli_query($koneksi, "SELECT * FROM tbl_siswa");
                                                     while ($data = mysqli_fetch_array($querySiswa)) { ?>
-                                                        <option value="<?= $data['nis'] ?>"><?= $data['nis'] . ' - ' . $data['nama'] ?></option>
+                                                        <option value="<?= $data['nis'] ?>" data-kelas="<?= $data['kelas'] ?>"><?= $data['nis'] . ' - ' . $data['nama'] . ' - ' . $data['kelas']  ?></option>
                                                     <?php
                                                     }
                                                     ?>
                                                 </select>
                                             </div>
                                         </div>
-                                        <!-- di peruntukan KELAS -->
                                         <div class="input-group mb-2">
                                             <label for="kelas" class="form-label small mb-1">KELAS</label>
                                             <div class="input-group">
                                                 <span class="input-group-text"><i class="fa-solid fa-location-arrow"></i></span>
                                                 <select name="kelas" id="kelas" class="form-select" required>
-                                                    <option value="">-- KELAS 6 -- </option>
+                                                    <option value="">-- Pilih Kelas --</option>
                                                     <option value="A">kelas A</option>
                                                     <option value="B">kelas B</option>
                                                     <option value="C">kelas C</option>
-                                                    <!-- <option value="D">kelas D</option>
-                                                    <option value="E">kelas E</option>
-                                                    <option value="F">kelas F</option> -->
                                                 </select>
                                             </div>
                                         </div>
@@ -216,12 +177,9 @@ $maxno = "UTS-" . sprintf("%03s", $noUrut);
                                                     </th>
                                                 </tr>
                                             </thead>
-                                            <!-- ini nanti ganti kelas -->
                                             <tbody id="kejuran">
-
                                             </tbody>
                                         </table>
-                                        <!-- Input Nilai Ujian -->
                                     </div>
                                 </div>
                             </div>
@@ -233,51 +191,73 @@ $maxno = "UTS-" . sprintf("%03s", $noUrut);
     </main>
 
     <script>
-        const kelas = document.getElementById('kelas');
-        const mapelKejuran = document.getElementById('kejuran');
+        document.addEventListener('DOMContentLoaded', function() {
+            const nisDropdown = document.getElementById('nis');
+            const kelasDropdown = document.getElementById('kelas');
+            const mapelKejuran = document.getElementById('kejuran');
 
-        kelas.addEventListener('change', function() {
-            let ajax = new XMLHttpRequest();
+            nisDropdown.addEventListener('change', function() {
+                const selectedOption = nisDropdown.options[nisDropdown.selectedIndex];
+                const kelasValue = selectedOption.getAttribute('data-kelas');
 
-            ajax.onreadystatechange = function() {
-                if (ajax.readyState == 4 && this.status == 200) {
-                    mapelKejuran.innerHTML = ajax.responseText;
-                    // document.querySelector('#datatablesSimple tbody').innerHTML = ajax.responseText;
+                if (kelasValue) {
+                    for (let i = 0; i < kelasDropdown.options.length; i++) {
+                        if (kelasDropdown.options[i].value === kelasValue) {
+                            kelasDropdown.selectedIndex = i;
+                            break;
+                        }
+                    }
+                    fetchMapel(kelasValue);
+                } else {
+                    kelasDropdown.selectedIndex = 0;
                 }
+            });
+
+            kelasDropdown.addEventListener('change', function() {
+                const kelasValue = kelasDropdown.value;
+                fetchMapel(kelasValue);
+            });
+
+            function fetchMapel(kelas) {
+                let ajax = new XMLHttpRequest();
+                ajax.onreadystatechange = function() {
+                    if (ajax.readyState == 4 && this.status == 200) {
+                        mapelKejuran.innerHTML = ajax.responseText;
+                    }
+                }
+                ajax.open('GET', 'ajax-mapel.php?kelas=' + kelas, true);
+                ajax.send();
             }
 
-            ajax.open('GET', 'ajax-mapel.php?kelas=' + kelas.value, true);
-            ajax.send();
+            const total = document.getElementById('total_nilai');
+            const minValue = document.getElementById('nilai_terendah');
+            const maxValue = document.getElementById('nilai_tertinggi');
+            const average = document.getElementById('nilai_rata2');
 
-        })
+            function fnhitung() {
+                let nilaiUjian = document.getElementsByClassName('nilai');
+                let totalNilai = 0;
+                let listNilai = [];
 
-        const total = document.getElementById('total_nilai');
-        const minValue = document.getElementById('nilai_terendah');
-        const maxValue = document.getElementById('nilai_tertinggi');
-        const average = document.getElementById('nilai_rata2');
+                for (let i = 0; i < nilaiUjian.length; i++) {
+                    let nilai = parseInt(nilaiUjian[i].value);
+                    totalNilai += nilai;
+                    listNilai.push(nilai);
+                }
 
-        function fnhitung() {
-            let nilaiUjian = document.getElementsByClassName('nilai');
-
-            let totalNilai = 0;
-            let listNilai = [];
-            for (let i = 0; i < nilaiUjian.length; i++) {
-                totalNilai = parseInt(totalNilai) + parseInt(nilaiUjian[i].value);
                 total.value = totalNilai;
-
-                listNilai.push(nilaiUjian[i].value)
-
-                listNilai.sort(function(a, b) {
-                    return a - b
-                });
-
+                listNilai.sort((a, b) => a - b);
                 minValue.value = listNilai[0];
                 maxValue.value = listNilai[listNilai.length - 1];
                 average.value = Math.round(totalNilai / listNilai.length);
-
-
             }
-        }
+
+            document.addEventListener('change', function(e) {
+                if (e.target && e.target.classList.contains('nilai')) {
+                    fnhitung();
+                }
+            });
+        });
     </script>
 
     <?php require_once "../template/footer.php"; ?>
