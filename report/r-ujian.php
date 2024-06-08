@@ -40,6 +40,12 @@ require_once "../config.php";
             padding: 8px;
             text-align: center;
         }
+
+        @media print {
+            @page {
+                size: A4;
+            }
+        }
     </style>
 </head>
 
@@ -47,12 +53,6 @@ require_once "../config.php";
 
     <h2>LAPORAN HASIL UJIAN</h2>
 
-    <label for="paperSize">Pilih Ukuran Kertas:</label>
-    <select id="paperSize">
-        <option value="A4">A4</option>
-        <option value="letter">Letter</option>
-        <option value="legal">Legal</option>
-    </select>
 
     <table>
         <thead>
@@ -102,7 +102,28 @@ require_once "../config.php";
         }
     </script>
 
-    <button onclick="printDocument()">Cetak Laporan</button>
+    <!-- <button onclick="printDocument()">Pratinjau dan Cetak Laporan</button>
+
+    <script>
+        // Function untuk menangani pencetakan
+        function printDocument() {
+            var paperSize = document.getElementById('paperSize').value;
+            var style = document.createElement('style');
+            style.innerHTML = `@page { size: ${paperSize}; }`;
+
+            // Tambahkan style langsung ke tombol cetak
+            var printButton = document.querySelector('button');
+            printButton.style.display = 'none';
+
+            document.head.appendChild(style);
+            window.print();
+            document.head.removeChild(style); // Menghapus style setelah mencetak
+
+            // Kembalikan tampilan tombol cetak setelah pencetakan selesai
+            printButton.style.display = 'block';
+        }
+    </script> -->
+
 
 </body>
 
