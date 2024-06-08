@@ -107,7 +107,7 @@ if ($msg == 'added') {
                                     <label for="telepon" class="col-sm-2 col-form-label">TELEPON</label>
                                     <label for="telepon" class="col-sm-1 col-form-label">:</label>
                                     <div class="col-sm-9">
-                                        <input type="tel" name="telepon" pattern="[0-9]{5,}" title="Minimal 5 angka" class="form-control ps-2 border-0 border-bottom" required>
+                                        <input type="tel" name="telepon" pattern="[0-9]{5,}" title="Minimal 5 angka" class="form-control ps-2 border-0 border-bottom">
                                     </div>
                                 </div>
                                 <div class="row mb-3">
