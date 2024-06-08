@@ -96,7 +96,7 @@ if ($msg == 'cancel') {
                                     <div class="col-sm-9">
                                         <select name="kelas" id="kelas" class="form-select border-0 border-bottom ps-2" required>
                                             <?php
-                                            $kelas = ["1", "2", "3", "4", "5", "6"];
+                                            $kelas = ["A", "B", "C"];
                                             foreach ($kelas as $kls) {
                                                 if ($data['kelas'] == $kls) { ?>
                                                     <option value="<?= $kls; ?>" selected><?= $kls; ?></option>
