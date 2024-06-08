@@ -47,7 +47,7 @@ $data = mysqli_fetch_array($sekolah);
 <div id="layoutSidenav_content">
     <main>
         <div class="container-fluid px-4">
-            <h1 class="mt-4">SDN 3 KUJANGSARI</h1>
+            <h1 class="mt-4">PROFILE SEKOLAH</h1>
             <ol class="breadcrumb mb-4">
                 <li class="breadcrumb-item "><a href="../index.php">Home</a></li>
                 <li class="breadcrumb-item active">Profile Sekolah</li>
@@ -89,14 +89,14 @@ $data = mysqli_fetch_array($sekolah);
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
-                                    <label for="status" class="col-sm-2 col-form-label">Status</label>
+                                    <label for="status" class="col-sm-2 col-form-label">status</label>
                                     <label for="status" class="col-sm-1 col-form-label">:</label>
                                     <div class="col-9" style="margin-left: -50px">
                                         <select name="status" id="status" class="form-select border-0 border-bottom" required>
                                             <!-- <option value="Negeri">Negeri</option>
                                             <option value="Swasta">Swasta</option> -->
                                             <?php
-                                            $status = ['Negeri', 'Swasta'];
+                                            $status = ['Swasta', 'Negeri'];
                                             foreach ($status as $stt) {
                                                 if ($data['status'] == $stt) { ?>
                                                     <option value="<?= $stt ?>" selected><?= $stt ?></option>
