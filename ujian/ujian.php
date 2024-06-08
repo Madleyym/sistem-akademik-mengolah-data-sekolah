@@ -139,8 +139,12 @@ if ($msg == 'deleted') {
     <script>
         function printDoc() {
             const myWindow = window.open("../report/r-ujian.php", "", "width=900, height=600, left=100");
+            myWindow.onload = function() {
+                myWindow.print();
+            };
         }
     </script>
+
 
 
     <?php require_once "../template/footer.php"; ?>
