@@ -22,3 +22,4 @@ if (isset($_POST['no_ujian'])) {
         echo "Error: " . mysqli_error($koneksi);
     }
 }
+?>
