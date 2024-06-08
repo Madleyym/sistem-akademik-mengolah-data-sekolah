@@ -80,7 +80,11 @@ if ($msg == 'added') {
                                     <label for="nip" class="col-sm-2 col-form-label">NIP</label>
                                     <label for="nip" class="col-sm-1 col-form-label">:</label>
                                     <div class="col-sm-9">
-                                        <input type="text" name="nip" pattern="[0-9]{18}" title="NIP harus 18 angka" class="form-control ps-2 border-0 border-bottom" required>
+                                        <!-- <input type="text" name="nip" pattern="[0-9]{18}" title="NIP harus 18 angka" class="form-control ps-2 border-0 border-bottom" required> -->
+                                        <!-- <input type="text" name="nip" pattern="\d{8} \d{6} \d{1} \d{3}" title="NIP harus 18 angka" class="form-control ps-2 border-0 border-bottom" required> -->
+                                        <!-- <input type="text" name="nip" pattern="\d{1,}(\s\d{1,}){4}" title="NIP harus terdiri dari angka dan spasi" class="form-control ps-2 border-0 border-bottom" required> -->
+                                        <input type="text" name="nip" pattern="\d{1,}(\s?\d{1,}){4}" title="NIP harus terdiri dari angka, dengan atau tanpa spasi di antara setiap kelompok digit" class="form-control ps-2 border-0 border-bottom" required>
+
                                         <?php
                                         // Check if NIP already exists
                                         if ($msg == 'cancel') {
@@ -93,7 +97,10 @@ if ($msg == 'added') {
                                     <label for="nama" class="col-sm-2 col-form-label">NAMA</label>
                                     <label for="nama" class="col-sm-1 col-form-label">:</label>
                                     <div class="col-sm-9">
-                                        <input type="text" name="nama" pattern="[a-zA-Z\s]+" class="form-control ps-2 border-0 border-bottom">
+                                        <!-- <input type="text" name="nama" pattern="[a-zA-Z\s]+" class="form-control ps-2 border-0 border-bottom"> -->
+                                        <input type="text" name="nama" pattern="[a-zA-Z\s\.,]+" class="form-control ps-2 border-0 border-bottom" required>
+                                        <!-- <input type="text" name="nama" pattern="[a-zA-Z\s\.,]+"> -->
+
                                     </div>
                                 </div>
                                 <div class="row mb-3">
